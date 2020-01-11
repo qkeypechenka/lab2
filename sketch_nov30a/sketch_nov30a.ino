@@ -2,12 +2,13 @@
 
 const int echoPin = 7;
 const int trigPin = 8;
+const int servoPin = 9;
 
 Servo servo;
 
 
 void setup() {
-  servo.attach(9);
+  servo.attach(servoPin);
   pinMode(echoPin, INPUT);
   pinMode(trigPin, OUTPUT);
   digitalWrite(trigPin, LOW);
@@ -16,20 +17,21 @@ void setup() {
 
 void loop() {
   for(int i=0; i<=180; i++){
-    servo.write(i);
-    if (i % 10 == 0) {
-      sendData(i);
-    }
+    writeData(i);
     delay(15);
   }
   
   for(int i=180; i>=0; i--){
-    servo.write(i);
-    if (i % 10 == 0) {
-      sendData(i * 1.0);
-    }
+    writeData(i);
     delay(15);
   }
+}
+
+void writeData(int i) {
+    servo.write(i);
+    if (i % 10 == 0) {
+      sendData(i);
+    }
 }
 
 float readDist() {

@@ -16,8 +16,6 @@ while True:
     angle = float(ser.readline())
 
     distances.append(distance)
-    ymin = float(min(distances)) - 20
-    ymax = float(max(distances)) + 20
     plt.ylim([ymin, 100])
     distances = distances[1:]
 
